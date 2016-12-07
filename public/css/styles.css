@@ -1,0 +1,38 @@
+.container-countdown {
+	padding: 50px 0 50px;
+	text-align: center;
+}
+
+.bamboo {
+	border: 1px solid ;
+	padding: 50px 0;
+	min-height: 500px;
+	position: relative;
+}
+
+.bamboo-content {
+	position: absolute;
+	top: 40%;
+	text-align: center;
+	width: 100%;
+}
+
+.bamboo-content p{
+	margin-bottom: 30px;
+}
+
+main {
+	min-height: 500px;
+	padding: 50px 0;
+}
+
+.team {
+	margin-bottom: 30px;
+}
+
+footer {
+	padding: 30px 0;
+	color: #FFF;
+	background-color: #cc210e;
+
+}

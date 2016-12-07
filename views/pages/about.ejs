@@ -1,0 +1,51 @@
+<%- contentFor('bamboo') %>
+<div class="container-countdown">
+	<div id="countdown" class="countdown">
+      <div class="row">
+        <div class="countdown-item col-sm-3 col-xs-6">
+          <div id="countdown-days" class="countdown-number">318</div>
+          <div class="countdown-label">days</div>
+        </div>
+        <div class="countdown-item col-sm-3 col-xs-6">
+          <div id="countdown-hours" class="countdown-number">10</div>
+          <div class="countdown-label">hours</div>
+        </div>
+        <div class="countdown-item col-sm-3 col-xs-6">
+          <div id="countdown-minutes" class="countdown-number">54</div>
+          <div class="countdown-label">minutes</div>
+        </div>
+        <div class="countdown-item col-sm-3 col-xs-6">
+          <div id="countdown-seconds" class="countdown-number">01</div>
+          <div class="countdown-label">seconds</div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<section class="bamboo">
+	<div class="bamboo-content">
+		<h2>대나무숲ㅋㅋㅋ</h2>
+		<p>대나무 숲을 샅샅이 파헤친다</p>
+
+		<a href="/contact" class="btn btn-lg btn-primary">Search</a>
+	</div>
+</section>
+
+<%- contentFor('body') %>
+<div class="jumbotron text-center">
+  <h1>The Team</h1>
+  <div class="row team">
+    <% for (user of users) { %>
+      <div class="col-sm-3">
+        <h2><%= user.name %></h2>
+        <img src="<%= user.avatar %>" alt="" class="img-responsive">
+      </div>
+    <% } %>
+  </div>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
