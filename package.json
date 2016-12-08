@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test.js",
+    "test-kitten": "mocha -R nyan test.js",
+    "watch": "gulp watch"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +15,11 @@
     "ejs": "^2.5.3",
     "express": "^4.14.0",
     "express-ejs-layouts": "^2.2.0",
+    "gulp": "3.8.11",
+    "gulp-mocha": "2.0.1",
+    "mocha": "2.2.4",
+    "mongodb": "2.0.35",
+    "mongoose": "^4.7.2",
     "nodemon": "^1.11.0"
   }
 }
