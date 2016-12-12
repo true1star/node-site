@@ -12,14 +12,25 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "browserify": "10.2.3",
+    "chai": "^3.5.0",
     "ejs": "^2.5.3",
     "express": "^4.14.0",
     "express-ejs-layouts": "^2.2.0",
     "gulp": "3.8.11",
+    "gulp-browserify": "0.5.1",
     "gulp-mocha": "2.0.1",
+    "http-status": "^0.2.3",
+    "karma": "0.12.16",
+    "karma-chai": "0.1.0",
+    "karma-chrome-launcher": "0.1.4",
+    "karma-mocha": "0.1.4",
     "mocha": "2.2.4",
     "mongodb": "2.0.35",
     "mongoose": "^4.7.2",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "superagent": "^3.1.0",
+    "underscore": "^1.8.3",
+    "wagner-core": "^0.2.0"
   }
 }

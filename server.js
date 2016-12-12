@@ -39,7 +39,7 @@ mongodb.MongoClient.connect(url, function(err, db){
 
 //mongoose
 var mongoose = require('mongoose');
-var schema = require('./schema');
+var schema = require('./bamboo');
 
 mongoose.connect('mongodb://localhost:27017/test');
 var Bamboo = mongoose.model('Bamboo', schema, 'bamboos');

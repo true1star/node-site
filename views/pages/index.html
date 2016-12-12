@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Bambooooo</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+	<script type="text/javascript" src="/home/hanbyul/node-site/bin/index.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myApp', ['ng', 'ngRoute']);
+
+		app.config(function($routeProvider) {
+			$routeProvider.
+				when('/', {
+					template: '<h1>home page</h1><a ng-href="#/about">About</a>'
+				}).
+				when('/about', {
+					template: '<a ng-href="#/">Back to Home Page</a>'
+				});
+		});
+	</script>
+</head>
+<body>
+	<h1>Bamboo forest</h1>
+	<div ng-view></div>
+</body>
+</html>

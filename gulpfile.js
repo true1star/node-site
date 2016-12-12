@@ -1,6 +1,7 @@
 var gulp = require('gulp');
-var mocha = require('gulp-mocha');
+var browserify = require('gulp-browserify');
 
+/*
 gulp.task('test', function() {
         gulp.
             src('./test.js').
@@ -12,4 +13,16 @@ gulp.task('test', function() {
 
 gulp.task('watch', function(){
         gulp.watch('./*.js', ['test']);
+});
+*/
+
+gulp.task('browserify', function() {
+	return gulp.
+		src('./newIndex.js').
+		pipe(browserify()).
+		pipe(gulp.dest('./bin'));
+});
+
+gulp.task('watch', function(){
+	gulp.watch('./*.js', ['browserify']);
 });
