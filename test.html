@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 <head>
-	<title>derectives Bambooooo</title>
+	<title>Bambooooo</title>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
 	<script type="text/javascript" src="bin/index.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('myApp', ['ng', 'ngRoute']);
+
+		app.config(function($routeProvider) {
+			$routeProvider.
+				when('/', {
+					templateUrl: '/views/pages/home.html',
+					controller: function($scope) {
+						$scope.linkText = 'about';
+					}
+				}).
+				when('/about', {
+					templateUrl: '/views/pages/about.html'
+				});
+		});
+	</script>
 </head>
 <body>
 	<h1>Bamboo forest</h1>
-	<counter-directive></counter-directive>
 	<div ng-view></div>
 </body>
 </html>

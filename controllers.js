@@ -1,8 +1,30 @@
-exports.mainViewController = function($scope, $bambooList) {
+exports.BambooViewController = function($scope, $bambooList) {
 	$scope.bambooList = $bambooList;
 	setTimeout(function() {
-		$scope.$emit('mainViewController');
+		$scope.$emit('BambooViewController');
 	}, 0);
+};
+
+exports.SchoolFilterController = function($scope) {
+	$scope.schoolList = ['korea','seoul','yonsei'];
+
+	setTimeout(function() {
+		$scope.$emit('SchoolFilterController');
+	}, 0);
+};
+
+exports.SchoolBamboosController = function($scope, $routeParams, $http) {
+	var encoded = encodeURIComponent($routeParams.school);
+	
+	$http.
+		get('/api/v1/bamboo/school/' + encoded).
+		success(function(data) {
+			$scope.bambooList = data.bamboos;
+		});
+		
+		setTimeout(function() {
+			$scope.$emit('SchoolBamboosController');
+		}, 0);
 };
 
 /*

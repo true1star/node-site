@@ -7,7 +7,6 @@ exports.$bambooList = function($http) {
 		$http.
 			get('/api/v1/bamboo').
 			success(function(data) {
-				// first bamboo post
 				s.bambooList = data.bamboos;
 			}).
 			error(function(data, $status) {

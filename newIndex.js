@@ -3,16 +3,28 @@ var directives = require('./directives');
 var services = require('./services');
 var _ = require('underscore');
 
-var app = angular.module('myBamboo', ['ng']);
+var components = angular.module('myBamboo.components', ['ng']);
 
 _.each(controllers, function(controller, name) {
-	app.controller(name, controller);
+	components.controller(name, controller);
 });
 
 _.each(directives, function(directive, name) {
-	app.directive(name, directive);
+	components.directive(name, directive);
 });
 
 _.each(services, function(factory, name) {
-	app.factory(name, factory);
+	components.factory(name, factory);
+});
+
+var app = angular.module('myBamboo', ['myBamboo.components', 'ngRoute']);
+
+app.config(function($routeProvider) {
+	$routeProvider.
+		when('/bamboo', {
+			template: '<bamboo-view></bamboo-view>'
+		}).
+		when('/school/:school', {
+			templateUrl: 'views/pages/school_view.html'
+		});
 });

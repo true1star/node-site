@@ -1,7 +1,27 @@
-exports.mainView = function() {
+exports.menuView = function() {
 	return {
-		controller: 'mainViewController',
 		templateUrl: '/views/pages/template.html' 	
+	};
+};
+
+exports.bambooView = function() {
+	return {
+		controller: 'BambooViewController',
+		templateUrl: '/views/pages/bamboo.html'
+	};
+};
+
+exports.schoolFilter = function() {
+	return {
+		controller: 'SchoolFilterController',
+		templateUrl: '/views/pages/school_filter.html'
+	};
+};
+
+exports.schoolBamboos = function() {
+	return {
+		controller: 'SchoolBamboosController',
+		templateUrl: '/views/pages/school_bamboos.html'
 	};
 };
 

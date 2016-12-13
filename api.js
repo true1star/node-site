@@ -9,11 +9,11 @@ module.exports = function(wagner) {
 	api.use(bodyparser.json());
 	
 	var bamboo = {
-    school: 'Seoul',
-    category: 'love',
-    topics: ['girlfriend','movie','couple'],
-    contents: 'I went to the movies with my girlfriend and there were a lot of couples.',
-    like: 142,
+    school: 'Korea',
+    category: 'school',
+    topics: ['final','exam','library'],
+    contents: 'final exam dolor sit amet, adipisicing elit, sed do eiusmod	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est library.',
+    like: 88,
     featured: true
 };
 
@@ -31,6 +31,22 @@ module.exports = function(wagner) {
 			Bamboo.
 				find().
 				sort(sort).
+				exec(function(err, bamboos) {
+                            if (err) {
+                                return res.
+                                    status(status.INTERNAL_SERVER_ERROR).
+                                    json({ error: err.toString() });
+                            }
+                            res.json({ bamboos: bamboos });
+                            });
+		};
+	}));
+	
+	api.get('/bamboo/school/:query', wagner.invoke(function(Bamboo) {
+		return function(req, res) {
+			Bamboo.
+				find({ school : req.params.query }).
+				sort({ date : -1 }).
 				exec(function(err, bamboos) {
                             if (err) {
                                 return res.

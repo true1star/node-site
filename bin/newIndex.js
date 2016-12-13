@@ -1,9 +1,31 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-exports.mainViewController = function($scope, $bambooList) {
+exports.BambooViewController = function($scope, $bambooList) {
 	$scope.bambooList = $bambooList;
 	setTimeout(function() {
-		$scope.$emit('mainViewController');
+		$scope.$emit('BambooViewController');
 	}, 0);
+};
+
+exports.SchoolFilterController = function($scope) {
+	$scope.schoolList = ['korea','seoul','yonsei'];
+
+	setTimeout(function() {
+		$scope.$emit('SchoolFilterController');
+	}, 0);
+};
+
+exports.SchoolBamboosController = function($scope, $routeParams, $http) {
+	var encoded = encodeURIComponent($routeParams.school);
+	
+	$http.
+		get('/api/v1/bamboo/school/' + encoded).
+		success(function(data) {
+			$scope.bambooList = data.bamboos;
+		});
+		
+		setTimeout(function() {
+			$scope.$emit('SchoolBamboosController');
+		}, 0);
 };
 
 /*
@@ -23,10 +45,30 @@ exports.BambooAllController = function($scope, $routeParams, $http) {
 */
 
 },{}],2:[function(require,module,exports){
-exports.mainView = function() {
+exports.menuView = function() {
 	return {
-		controller: 'mainViewController',
 		templateUrl: '/views/pages/template.html' 	
+	};
+};
+
+exports.bambooView = function() {
+	return {
+		controller: 'BambooViewController',
+		templateUrl: '/views/pages/bamboo.html'
+	};
+};
+
+exports.schoolFilter = function() {
+	return {
+		controller: 'SchoolFilterController',
+		templateUrl: '/views/pages/school_filter.html'
+	};
+};
+
+exports.schoolBamboos = function() {
+	return {
+		controller: 'SchoolBamboosController',
+		templateUrl: '/views/pages/school_bamboos.html'
 	};
 };
 
@@ -45,18 +87,30 @@ var directives = require('./directives');
 var services = require('./services');
 var _ = require('underscore');
 
-var app = angular.module('myBamboo', ['ng']);
+var components = angular.module('myBamboo.components', ['ng']);
 
 _.each(controllers, function(controller, name) {
-	app.controller(name, controller);
+	components.controller(name, controller);
 });
 
 _.each(directives, function(directive, name) {
-	app.directive(name, directive);
+	components.directive(name, directive);
 });
 
 _.each(services, function(factory, name) {
-	app.factory(name, factory);
+	components.factory(name, factory);
+});
+
+var app = angular.module('myBamboo', ['myBamboo.components', 'ngRoute']);
+
+app.config(function($routeProvider) {
+	$routeProvider.
+		when('/bamboo', {
+			template: '<bamboo-view></bamboo-view>'
+		}).
+		when('/school/:school', {
+			templateUrl: 'views/pages/school_view.html'
+		});
 });
 
 },{"./controllers":1,"./directives":2,"./services":6,"underscore":5}],4:[function(require,module,exports){
@@ -1714,7 +1768,6 @@ exports.$bambooList = function($http) {
 		$http.
 			get('/api/v1/bamboo').
 			success(function(data) {
-				// first bamboo post
 				s.bambooList = data.bamboos;
 			}).
 			error(function(data, $status) {
