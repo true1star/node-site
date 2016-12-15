@@ -41,7 +41,6 @@ exports.SchoolBamboosController = function($scope, $routeParams, $http) {
 
 exports.CategoryFilterController = function($scope, $routeParams, $http, $location) {
 
-	console.log($location.path());
 	if ($routeParams.school){
 		$scope.path = "#/school/"+$routeParams.school;
 	} else {
@@ -76,6 +75,33 @@ exports.CategoryBamboosController = function($scope, $routeParams, $http) {
 		}, 0);
 };
 
+exports.TopicView = function($scope, $routeParams, $http, $location) {	
+	
+	$scope.submit = function() {
+		$location.path('/topics/'+$scope.topic)
+		$scope.topic = '';
+	};
+	
+};
+
+
+exports.TopicViewController = function($scope, $routeParams, $http) {	
+		
+		var encoded = encodeURIComponent($routeParams.topic);
+		
+		$http.
+			get('/api/v1/bamboo/topics/' + encoded).
+			success(function(data) {
+				$scope.bambooList = data.bamboos;
+				console.log(data.bamboos);
+			});
+		
+		setTimeout(function() {
+			$scope.$emit('TopicViewController');
+			
+		}, 0);
+};
+
 /*
 exports.BambooAllController = function($scope, $routeParams, $http) {
     var encoded = encodeURIComponent($routeParams.id);
@@ -93,6 +119,12 @@ exports.BambooAllController = function($scope, $routeParams, $http) {
 */
 
 },{}],2:[function(require,module,exports){
+exports.homeView = function() {
+	return {
+		templateUrl: '/views/pages/home.html' 	
+	};
+};
+
 exports.menuView = function() {
 	return {
 		templateUrl: '/views/pages/template.html' 	
@@ -134,6 +166,13 @@ exports.categoryBamboos = function() {
 	};
 };
 
+exports.topicView = function() {
+	return {
+		controller: 'TopicViewController',
+		templateUrl: '/views/pages/school_bamboos.html'
+	};
+};
+
 /*
 exports.bambooAll = function() {
     return  {
@@ -167,6 +206,9 @@ var app = angular.module('myBamboo', ['myBamboo.components', 'ngRoute']);
 
 app.config(function($routeProvider) {
 	$routeProvider.
+		when('/', {
+			template: '<home-view></home-view>'
+		}).
 		when('/bamboo', {
 			template: '<bamboo-view></bamboo-view>'
 		}).
@@ -176,11 +218,11 @@ app.config(function($routeProvider) {
 		when('/school/:school/:category?', {
 			templateUrl: 'views/pages/school_view.html'
 		}).
-		when('/category', {
-			template: '<category-filter></category-filter>'
-		}).
-		when('/category/:category', {
+		when('/category/:category?', {
 			templateUrl: 'views/pages/category_view.html'
+		}).
+		when('/topics/:topic', {
+			template: '<topic-view></topic-view>'
 		});
 });
 

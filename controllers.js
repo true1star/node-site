@@ -40,7 +40,6 @@ exports.SchoolBamboosController = function($scope, $routeParams, $http) {
 
 exports.CategoryFilterController = function($scope, $routeParams, $http, $location) {
 
-	console.log($location.path());
 	if ($routeParams.school){
 		$scope.path = "#/school/"+$routeParams.school;
 	} else {
@@ -72,6 +71,33 @@ exports.CategoryBamboosController = function($scope, $routeParams, $http) {
 		
 		setTimeout(function() {
 			$scope.$emit('CategoryBamboosController');
+		}, 0);
+};
+
+exports.TopicView = function($scope, $routeParams, $http, $location) {	
+	
+	$scope.submit = function() {
+		$location.path('/topics/'+$scope.topic)
+		$scope.topic = '';
+	};
+	
+};
+
+
+exports.TopicViewController = function($scope, $routeParams, $http) {	
+		
+		var encoded = encodeURIComponent($routeParams.topic);
+		
+		$http.
+			get('/api/v1/bamboo/topics/' + encoded).
+			success(function(data) {
+				$scope.bambooList = data.bamboos;
+				console.log(data.bamboos);
+			});
+		
+		setTimeout(function() {
+			$scope.$emit('TopicViewController');
+			
 		}, 0);
 };
 

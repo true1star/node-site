@@ -36,7 +36,7 @@ module.exports = function(db){
 	
 	var schema = new mongoose.Schema(productSchema);
 
-	schema.index({ contents: 'text' });
+	schema.index({ topics: 'text' });
 
 	return db.model('Bamboo', schema, 'bamboos');
 };

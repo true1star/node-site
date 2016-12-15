@@ -1,0 +1,11 @@
+<div class="bamboo-container">
+	<div class="panel panel-default" ng-repeat="bamboo in bambooList.bambooList">
+	  <div class="panel-heading">
+	  	{{ bamboo.school }} | 
+	  <span ng-repeat="topic in bamboo.topics">{{ topic }} </span>	
+	  </div>
+	  <div class="panel-body">
+		{{ bamboo.contents }}
+	  </div>
+	</div>
+</div>

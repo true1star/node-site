@@ -1,3 +1,9 @@
+exports.homeView = function() {
+	return {
+		templateUrl: '/views/pages/home.html' 	
+	};
+};
+
 exports.menuView = function() {
 	return {
 		templateUrl: '/views/pages/template.html' 	
@@ -36,6 +42,13 @@ exports.categoryBamboos = function() {
 	return {
 		controller: 'CategoryBamboosController',
 		templateUrl: '/views/pages/category_bamboos.html'
+	};
+};
+
+exports.topicView = function() {
+	return {
+		controller: 'TopicViewController',
+		templateUrl: '/views/pages/school_bamboos.html'
 	};
 };
 

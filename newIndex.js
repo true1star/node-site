@@ -21,6 +21,9 @@ var app = angular.module('myBamboo', ['myBamboo.components', 'ngRoute']);
 
 app.config(function($routeProvider) {
 	$routeProvider.
+		when('/', {
+			template: '<home-view></home-view>'
+		}).
 		when('/bamboo', {
 			template: '<bamboo-view></bamboo-view>'
 		}).
@@ -30,10 +33,10 @@ app.config(function($routeProvider) {
 		when('/school/:school/:category?', {
 			templateUrl: 'views/pages/school_view.html'
 		}).
-		when('/category', {
-			template: '<category-filter></category-filter>'
-		}).
-		when('/category/:category', {
+		when('/category/:category?', {
 			templateUrl: 'views/pages/category_view.html'
+		}).
+		when('/topics/:topic', {
+			template: '<topic-view></topic-view>'
 		});
 });

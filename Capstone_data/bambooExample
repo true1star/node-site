@@ -1,0 +1,9 @@
+대나무숲글 예시 = { 
+ 		school: "고려대",
+	    	category: 0, //category id 사회편견
+	    	topics: [학벌, 편입, 차별, 학부, 반기민], //글에서 나오는 토픽 단어들
+	    	contents: "글 내용 여기 들어감",
+	    	date: 2016-10-27T02:36:24+0000, //페북에서 가져온 엑셀파일에 있는 created_time
+	    	like: 123, //좋아요 개수
+	    	featured: false // 이건 걍 false로 두셈(소문자). 좋아요 많은 최신글에 true로 해서 main에 보여주는 용
+		}

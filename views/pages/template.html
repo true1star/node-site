@@ -8,7 +8,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="/">BamBoo</a>
+	      <a class="navbar-brand" href="#/">BambooStick</a>
 	    </div>
 
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -23,11 +23,12 @@
 	        	<a href="#/category">카테고리</a>
 	        </li>
 	      </ul>
-	      <form class="navbar-form navbar-left" role="search">
+
+	      <form ng-submit="submit()" ng-controller="TopicView" class="navbar-form navbar-left" role="search">
 	        <div class="form-group">
-	          <input type="text" class="form-control" placeholder="Search">
+	          <input type="text" ng-model="topic" name="topic" class="form-control" placeholder="대나무숲 토픽 검색">
 	        </div>
-	        <button type="submit" class="btn btn-default">Submit</button>
+	        <button type="submit" id="submit" class="btn btn-default">Search</button>
 	      </form>
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a href="#">Link</a></li>

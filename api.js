@@ -97,7 +97,7 @@ module.exports = function(wagner) {
 		};
 	}));
 
-	api.get('/bamboo/category/:category', wagner.invoke(function(Bamboo) {
+	api.get('/bamboo/category/:category?', wagner.invoke(function(Bamboo) {
 		return function(req, res) {
 			
 			var query = {};
@@ -108,6 +108,26 @@ module.exports = function(wagner) {
 			
 			Bamboo.
 				find(query).
+				populate('category').
+				sort({ date : -1 }).
+				exec(function(err, bamboos) {
+				
+                            if (err) {
+                                return res.
+                                    status(status.INTERNAL_SERVER_ERROR).
+                                    json({ error: err.toString() });
+                            }
+                            
+                            res.json({ bamboos: bamboos });
+				});
+		};                            
+	}));
+
+	api.get('/bamboo/topics/:topic', wagner.invoke(function(Bamboo) {
+		return function(req, res) {
+			
+			Bamboo.
+				find({ $text: { $search: req.params.topic } }).
 				populate('category').
 				sort({ date : -1 }).
 				exec(function(err, bamboos) {
