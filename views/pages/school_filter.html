@@ -1,8 +1,10 @@
-<span class="filter" ng-repeat=" school in schoolList">
-	<a ng-href="#/school/{{school}}">
-		{{school}}
-	</a>
-	<span class="divider" ng-hide="$last">
-		|
+<div class="filter-container">
+	<span class="filter" ng-repeat=" school in schoolList">
+		<a ng-href="#/school/{{school}}">
+			{{school}}
+		</a>
+		<span class="divider" ng-hide="$last">
+			|
+		</span>
 	</span>
-</span>
+</div>

@@ -25,6 +25,20 @@ exports.schoolBamboos = function() {
 	};
 };
 
+exports.categoryFilter = function() {
+	return {
+		controller: 'CategoryFilterController',
+		templateUrl: '/views/pages/category_filter.html'
+	};
+};
+
+exports.categoryBamboos = function() {
+	return {
+		controller: 'CategoryBamboosController',
+		templateUrl: '/views/pages/category_bamboos.html'
+	};
+};
+
 /*
 exports.bambooAll = function() {
     return  {

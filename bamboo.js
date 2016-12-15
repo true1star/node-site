@@ -1,27 +1,28 @@
 var mongoose = require('mongoose');
 
 module.exports = function(db){
+
 	var productSchema = {
+
 	    school: {
 		type: String,
 		lowercase: true,
 		required: true
 	    },
 	    category: {
-		type: String,
-		default: 'etc'
+		type: Number,
+		ref: 'Category',
 	    },
-	    topics: {
-		type: Array,
-		default: ['null']
-	    },
+	    topics: [{
+	    	type: String
+	    }],
 	    contents: {
 		type: String,
 		required: true
 	    },
 	    date: { 
 		type: Date, 
-		default: Date.now
+		default: new Date()
 	    },
 	    like: {
 		type: Number,
@@ -30,6 +31,7 @@ module.exports = function(db){
 	    featured: {
 		type: Boolean
 	    }
+
 	};
 	
 	var schema = new mongoose.Schema(productSchema);

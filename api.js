@@ -8,20 +8,37 @@ module.exports = function(wagner) {
 
 	api.use(bodyparser.json());
 	
-	var bamboo = {
-    school: 'Korea',
-    category: 'school',
-    topics: ['final','exam','library'],
-    contents: 'final exam dolor sit amet, adipisicing elit, sed do eiusmod	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est library.',
-    like: 88,
-    featured: true
-};
+	api.get('/schools', wagner.invoke(function(School) {
+		return function(req, res) {
+			var sort = { date: -1 };
+			
+			School.
+				find().
+				exec(function(err, schools) {
+                            if (err) {
+                                return res.
+                                    status(status.INTERNAL_SERVER_ERROR).
+                                    json({ error: err.toString() });
+                            }
+                            res.json({ schools: schools });
+                            });
+		};
+	}));
 
-	api.get('/create', wagner.invoke(function(Bamboo) {
-		return function(req, res) {		
-			Bamboo.create( bamboo, function(err, doc) {
-			res.send('done!!')});
-		}
+	api.get('/categories', wagner.invoke(function(Category) {
+		return function(req, res) {
+			
+			Category.
+				find().
+				exec(function(err, categories) {
+                            if (err) {
+                                return res.
+                                    status(status.INTERNAL_SERVER_ERROR).
+                                    json({ error: err.toString() });
+                            }
+                            res.json({ categories: categories });
+                            });
+		};
 	}));
 	
 	api.get('/bamboo', wagner.invoke(function(Bamboo) {
@@ -42,10 +59,19 @@ module.exports = function(wagner) {
 		};
 	}));
 	
-	api.get('/bamboo/school/:query', wagner.invoke(function(Bamboo) {
+	api.get('/bamboo/school/:school/:category?', wagner.invoke(function(Bamboo) {
 		return function(req, res) {
-			Bamboo.
-				find({ school : req.params.query }).
+		
+			console.log(req.params);
+			
+			var query = { school : req.params.school };
+			
+			if ( req.params.category ){
+				query["category"] = Number(req.params.category);
+			}
+			
+			/*Bamboo.
+				find(query).
 				sort({ date : -1 }).
 				exec(function(err, bamboos) {
                             if (err) {
@@ -54,8 +80,47 @@ module.exports = function(wagner) {
                                     json({ error: err.toString() });
                             }
                             res.json({ bamboos: bamboos });
-                            });
+                });*/
+                
+				Bamboo.
+				find(query).
+				populate('category').
+				sort({ date : -1 }).
+				exec(function(err, bamboos) {
+                            if (err) {
+                                return res.
+                                    status(status.INTERNAL_SERVER_ERROR).
+                                    json({ error: err.toString() });
+                            }
+                            res.json({ bamboos: bamboos });
+                });
 		};
+	}));
+
+	api.get('/bamboo/category/:category', wagner.invoke(function(Bamboo) {
+		return function(req, res) {
+			
+			var query = {};
+			
+			if ( req.params.category ){
+				query = { "category" : Number(req.params.category) };
+			}
+			
+			Bamboo.
+				find(query).
+				populate('category').
+				sort({ date : -1 }).
+				exec(function(err, bamboos) {
+				
+                            if (err) {
+                                return res.
+                                    status(status.INTERNAL_SERVER_ERROR).
+                                    json({ error: err.toString() });
+                            }
+                            
+                            res.json({ bamboos: bamboos });
+				});
+		};                            
 	}));
 
 	api.get('/bamboo/:query', wagner.invoke(function(Bamboo) {

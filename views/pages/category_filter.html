@@ -1,0 +1,18 @@
+<div class="filter-container">
+	<span class="filter">
+		<a ng-href="{{path}}">
+			ALL
+		</a>
+	</span>
+	<span class="divider">
+			|
+	</span>
+	<span class="filter" ng-repeat=" category in categories">
+		<a ng-href="{{path}}/{{category._id}}">
+			{{category.categories}}
+		</a>
+		<span class="divider" ng-hide="$last">
+			|
+		</span>
+	</span>
+</div>

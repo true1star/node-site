@@ -24,7 +24,16 @@ app.config(function($routeProvider) {
 		when('/bamboo', {
 			template: '<bamboo-view></bamboo-view>'
 		}).
-		when('/school/:school', {
+		when('/school', {
+			template: '<school-filter></school-filter>'
+		}).
+		when('/school/:school/:category?', {
 			templateUrl: 'views/pages/school_view.html'
+		}).
+		when('/category', {
+			template: '<category-filter></category-filter>'
+		}).
+		when('/category/:category', {
+			templateUrl: 'views/pages/category_view.html'
 		});
 });

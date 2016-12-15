@@ -1,13 +1,16 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 exports.BambooViewController = function($scope, $bambooList) {
+
 	$scope.bambooList = $bambooList;
+
 	setTimeout(function() {
 		$scope.$emit('BambooViewController');
 	}, 0);
 };
 
 exports.SchoolFilterController = function($scope) {
-	$scope.schoolList = ['korea','seoul','yonsei'];
+
+	$scope.schoolList = ['가천대', '건국대', '경북대', '경희대', '고려대', '광운대', '동국대', '부산대', '서강대', '서울교대', '서울대', '서울시립대', '서울여대', '성균관대', '성신여대', '숙명여대', '숭실대', '아주대', '연세대', '외대', '인하대', '전남대', '전북대', '중앙대', '충남대', '한양대', '항공대', '홍익대'];
 
 	setTimeout(function() {
 		$scope.$emit('SchoolFilterController');
@@ -15,16 +18,61 @@ exports.SchoolFilterController = function($scope) {
 };
 
 exports.SchoolBamboosController = function($scope, $routeParams, $http) {
+
+	console.log("SCHOOL: ", $routeParams);
 	var encoded = encodeURIComponent($routeParams.school);
+	
+	if ($routeParams.category){
+		var encodedcategory = encodeURIComponent($routeParams.category);
+		encoded += "/" + encodedcategory;
+	}
 	
 	$http.
 		get('/api/v1/bamboo/school/' + encoded).
 		success(function(data) {
 			$scope.bambooList = data.bamboos;
+			console.log(data.bamboos);
 		});
 		
 		setTimeout(function() {
 			$scope.$emit('SchoolBamboosController');
+		}, 0);
+};
+
+exports.CategoryFilterController = function($scope, $routeParams, $http, $location) {
+
+	console.log($location.path());
+	if ($routeParams.school){
+		$scope.path = "#/school/"+$routeParams.school;
+	} else {
+		$scope.path = "#/category";
+	}
+
+	console.log("FILTER: ", $routeParams);
+
+	$http.
+		get('/api/v1/categories').
+		success(function(data) {
+			$scope.categories = data.categories;
+
+		});
+		
+		setTimeout(function() {
+			$scope.$emit('CategoryFilterController');
+		}, 0);
+};
+
+exports.CategoryBamboosController = function($scope, $routeParams, $http) {
+	var encoded = encodeURIComponent($routeParams.category);
+	
+	$http.
+		get('/api/v1/bamboo/category/' + encoded).
+		success(function(data) {
+			$scope.bambooList = data.bamboos;
+		});
+		
+		setTimeout(function() {
+			$scope.$emit('CategoryBamboosController');
 		}, 0);
 };
 
@@ -72,6 +120,20 @@ exports.schoolBamboos = function() {
 	};
 };
 
+exports.categoryFilter = function() {
+	return {
+		controller: 'CategoryFilterController',
+		templateUrl: '/views/pages/category_filter.html'
+	};
+};
+
+exports.categoryBamboos = function() {
+	return {
+		controller: 'CategoryBamboosController',
+		templateUrl: '/views/pages/category_bamboos.html'
+	};
+};
+
 /*
 exports.bambooAll = function() {
     return  {
@@ -108,8 +170,17 @@ app.config(function($routeProvider) {
 		when('/bamboo', {
 			template: '<bamboo-view></bamboo-view>'
 		}).
-		when('/school/:school', {
+		when('/school', {
+			template: '<school-filter></school-filter>'
+		}).
+		when('/school/:school/:category?', {
 			templateUrl: 'views/pages/school_view.html'
+		}).
+		when('/category', {
+			template: '<category-filter></category-filter>'
+		}).
+		when('/category/:category', {
+			templateUrl: 'views/pages/category_view.html'
 		});
 });
 
@@ -1783,5 +1854,27 @@ exports.$bambooList = function($http) {
 	
 	return s;
 };
+
+exports.$schools = function($http) {
+	var s = {};
+	
+	s.loadSchools = function() {
+		$http.
+			get('/api/v1/schools').
+			success(function(data) {
+				s.schools = data.schools;
+			}).
+			error(function(data, $status) {
+				if ($status === status.NOT_FOUND) {
+					s.schools = null;
+				}
+			});
+	};
+	
+	s.loadSchools();
+	
+	return s;
+};
+
 
 },{"http-status":4}]},{},[3])
