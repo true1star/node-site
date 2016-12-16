@@ -1,13 +1,19 @@
 <div class="bamboo-container">
 	<div class="panel panel-default" ng-repeat="bamboo in bambooList">
 	  <div class="panel-heading">
-	  	{{ bamboo.school }} | 
-	  <span ng-repeat="topic in bamboo.topics">{{ topic }} </span>
-	  <span>| category: </span>
-	  <span ng-repeat="category in bamboo.category.categories">{{ category }} </span>
+	  	{{ bamboo.school }}
+	  <div class="category">
+		  <span  ng-repeat="category in bamboo.category.categories">{{ category }} </span>
+	  </div>
 	  </div>
 	  <div class="panel-body">
-		{{ bamboo.contents }}
+		  <div class="topics">
+		  	<i class="fa fa-hashtag" aria-hidden="true"></i>
+			  <span ng-repeat="topic in bamboo.topics">{{ topic }} </span>
+		  </div>
+		  <div class="contents">
+			{{ bamboo.contents }}
+		  </div>
 	  </div>
 	</div>
 </div>

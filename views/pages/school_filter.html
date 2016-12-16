@@ -1,10 +1,7 @@
-<div class="filter-container">
-	<span class="filter" ng-repeat=" school in schoolList">
-		<a ng-href="#/school/{{school}}">
+<div ng-hide="myVar" class="filter-container school-container" ng-controller="personCtrl">
+	<div class="filter school-filter" ng-repeat=" school in schoolList">
+		<a ng-click="toggle()" ng-href="#/school/{{school}}" >
 			{{school}}
 		</a>
-		<span class="divider" ng-hide="$last">
-			|
-		</span>
-	</span>
+	</div>
 </div>

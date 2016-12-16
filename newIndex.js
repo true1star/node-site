@@ -33,7 +33,10 @@ app.config(function($routeProvider) {
 		when('/school/:school/:category?', {
 			templateUrl: 'views/pages/school_view.html'
 		}).
-		when('/category/:category?', {
+		when('/category', {
+			template: '<category-filter></category-filter>'
+		}).
+		when('/category/:category', {
 			templateUrl: 'views/pages/category_view.html'
 		}).
 		when('/topics/:topic', {

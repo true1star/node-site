@@ -1,18 +1,18 @@
-<div class="filter-container">
-	<span class="filter">
-		<a ng-href="{{path}}">
-			ALL
-		</a>
-	</span>
-	<span class="divider">
-			|
-	</span>
-	<span class="filter" ng-repeat=" category in categories">
-		<a ng-href="{{path}}/{{category._id}}">
-			{{category.categories}}
-		</a>
-		<span class="divider" ng-hide="$last">
-			|
-		</span>
-	</span>
+<div class="top-status" ng-show="school">
+	<div class="school-name">
+	{{school}} 대나무숲
+	</div>
+</div>
+
+<div class="filter-container category-container">
+<div class="go-back" ng-show="school">
+	<a ng-href="#/school">
+		<i class="fa fa-arrow-left" aria-hidden="true"></i>
+	</a>
+</div>
+	<a ng-href="{{path}}/{{category._id}}" ng-repeat=" category in categories">
+		<div class="filter category-filter">
+		<span ng-repeat=" word in category.categories">{{word}} </span>
+		</div>
+	</a>
 </div>

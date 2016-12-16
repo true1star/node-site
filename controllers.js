@@ -1,6 +1,6 @@
 exports.BambooViewController = function($scope, $bambooList) {
 
-	$scope.bambooList = $bambooList;
+	$scope.bambooList = $bambooList.bambooList;
 
 	setTimeout(function() {
 		$scope.$emit('BambooViewController');
@@ -18,7 +18,6 @@ exports.SchoolFilterController = function($scope) {
 
 exports.SchoolBamboosController = function($scope, $routeParams, $http) {
 
-	console.log("SCHOOL: ", $routeParams);
 	var encoded = encodeURIComponent($routeParams.school);
 	
 	if ($routeParams.category){
@@ -30,7 +29,6 @@ exports.SchoolBamboosController = function($scope, $routeParams, $http) {
 		get('/api/v1/bamboo/school/' + encoded).
 		success(function(data) {
 			$scope.bambooList = data.bamboos;
-			console.log(data.bamboos);
 		});
 		
 		setTimeout(function() {
@@ -42,11 +40,10 @@ exports.CategoryFilterController = function($scope, $routeParams, $http, $locati
 
 	if ($routeParams.school){
 		$scope.path = "#/school/"+$routeParams.school;
+		$scope.school = $routeParams.school;
 	} else {
 		$scope.path = "#/category";
 	}
-
-	console.log("FILTER: ", $routeParams);
 
 	$http.
 		get('/api/v1/categories').
@@ -61,7 +58,12 @@ exports.CategoryFilterController = function($scope, $routeParams, $http, $locati
 };
 
 exports.CategoryBamboosController = function($scope, $routeParams, $http) {
-	var encoded = encodeURIComponent($routeParams.category);
+	
+	var encoded = "";
+	console.log($routeParams.category);
+	if( $routeParams.category ){
+		encoded = encodeURIComponent($routeParams.category);
+	}
 	
 	$http.
 		get('/api/v1/bamboo/category/' + encoded).
@@ -99,6 +101,19 @@ exports.TopicViewController = function($scope, $routeParams, $http) {
 			$scope.$emit('TopicViewController');
 			
 		}, 0);
+};
+
+exports.personCtrl = function($scope) {
+    $scope.myVar = false;
+    $scope.toggle = function() {
+        $scope.myVar = !$scope.myVar;
+    };
+};
+
+exports.GoBackCtrl = function($scope) {
+  $scope.$back = function() { 
+    window.history.back();
+  };
 };
 
 /*

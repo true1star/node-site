@@ -1,3 +1,45 @@
+body {
+	background-color: #f9efc7;
+}
+
+.navbar-default {
+	background-color: #2fd46a !important;
+}
+
+.navbar-default .navbar-brand {
+    color: #FFF !important;
+    width: 132.66px;
+}   
+
+.navbar-default .navbar-brand:hover {
+	font-weight: bold;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #FFF !important;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+	font-weight: bold;
+}
+
+.navbar-form {
+	float: right;
+}
+
+.navbar-form .btn{
+	width: 65px;
+	border: 1px solid #FFF !important;
+	background-color: rgba(255, 255, 255, 0);
+	color: #FFF;
+}
+
+.navbar-form .btn:hover{
+	-webkit-box-shadow: 0px 0px 0.5px 1px rgba(238,238,238,0.7);
+	-moz-box-shadow: 0px 0px 0.5px 1px rgba(238,238,238,0.7);
+	box-shadow: 0px 0px 0.5px 1px rgba(238,238,238,0.7);
+}
+
 .container-countdown {
 	padding: 50px 0 50px;
 	text-align: center;
@@ -5,9 +47,41 @@
 
 .bamboo-container {
 	position: relative;
-	min-width: 350px;
+	min-width: 305px;
 	max-width: 50%;
 	margin: auto;
+}
+
+.category {
+	display: inline-block;
+	float: right;
+}
+
+ .topics {
+ 	position: relative;
+ }
+
+ .contents{
+ 	position: relative;
+ }
+
+.top-status {
+	/*position: relative;*/
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+	font-size: 200%;
+}
+
+.school-name {
+	display: inline-block;
+	border-bottom: 2px solid;
+}
+
+.go-back{
+	position: absolute;
+	max-width: 70%;
+	top: 5px;
 }
 
 .filter-container {
@@ -15,8 +89,58 @@
 	text-align: center;
 	max-width: 70%;
 	margin: auto;
-	margin-top: 40px;
 	margin-bottom: 40px;
+	padding: 10px;
+	border: 1px solid #eeeeee;
+	border-radius: 10px;
+	-webkit-box-shadow: 3px 3px 10px 1px rgba(238,238,238,0.9);
+	-moz-box-shadow: 3px 3px 10px 1px rgba(238,238,238,0.9);
+	box-shadow: 3px 3px 3px 1px rgba(238,238,238,0.9);
+}
+
+.filter {
+	display: inline-block;
+	position: relative;
+	width: 130px;
+	color: black;
+}
+
+.school-filter {
+	padding-bottom: 15px;	
+}
+
+.school-filter:hover {
+	font-size: 200%;
+	font-weight: bold;
+	margin-top: -16px;
+	line-height: 40px;
+	margin-bottom: -40px;
+}
+
+.category-filter {
+	width: 130px;
+	padding-top: 3px;
+	padding-bottom: 3px; 
+	color: #777777;
+}
+
+.category-filter:hover {
+	background-color: #2fd46a;
+	font-size: 120%;
+	color: #FFF;
+	border-bottom: 2px solid #1d8240;
+	border-radius: 3px;
+	margin-top: -5px;
+	margin-bottom: -40px;
+	font-weight: bold;
+}
+
+.filter a, .filter a:hover, .filter a:focus {
+	color: #777777;
+	text-decoration: none;
+}
+.category-container a:hover, .category-container a:focus {
+	text-decoration: none;
 }
 
 .bamboo {

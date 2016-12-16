@@ -13,7 +13,7 @@ exports.menuView = function() {
 exports.bambooView = function() {
 	return {
 		controller: 'BambooViewController',
-		templateUrl: '/views/pages/bamboo.html'
+		templateUrl: '/views/pages/school_bamboos.html'
 	};
 };
 
@@ -41,7 +41,7 @@ exports.categoryFilter = function() {
 exports.categoryBamboos = function() {
 	return {
 		controller: 'CategoryBamboosController',
-		templateUrl: '/views/pages/category_bamboos.html'
+		templateUrl: '/views/pages/school_bamboos.html'
 	};
 };
 
