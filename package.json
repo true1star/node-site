@@ -2,7 +2,7 @@
   "name": "node-site",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "mocha test.js",
     "test-kitten": "mocha -R nyan test.js",

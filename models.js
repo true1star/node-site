@@ -7,18 +7,7 @@ module.exports = function(wagner) {
 		return mongoose;
 	});
 
-//    var Category = 
-//        mongoose.model('Category', require('./category'), 'categories');
-//    var Bamboo =
-//	mongoose.model('Bamboo', require('./bamboo'), 'bamboos');
-
     wagner.factory('Category', require('./category'));
-    
-	wagner.factory('School', require('./school'));
 	
     wagner.factory('Bamboo', require('./bamboo'));
-    
-//    return {
-//        Bamboo: Bamboo
-//    };
 };
