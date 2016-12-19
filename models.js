@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 module.exports = function(wagner) {
-    mongoose.connect('mongodb://localhost:27017/text');
+    mongoose.connect(process.env.MONGODB_URI);
 
 	wagner.factory('db', function(){
 		return mongoose;
