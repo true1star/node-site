@@ -18,7 +18,7 @@ gulp.task('watch', function(){
 
 gulp.task('browserify', function() {
 	return gulp.
-		src('./newIndex.js').
+		src('./public/js/newIndex.js').
 		pipe(browserify()).
 		pipe(gulp.dest('./bin'));
 });
