@@ -21,24 +21,6 @@ module.exports = function(wagner) {
 		};
 	}));
 
-	
-	api.get('/schools', wagner.invoke(function(School) {
-		return function(req, res) {
-			var sort = { date: -1 };
-			
-			School.
-				find().
-				exec(function(err, schools) {
-                            if (err) {
-                                return res.
-                                    status(status.INTERNAL_SERVER_ERROR).
-                                    json({ error: err.toString() });
-                            }
-                            res.json({ schools: schools });
-                            });
-		};
-	}));
-
 	api.get('/categories', wagner.invoke(function(Category) {
 		return function(req, res) {
 			
