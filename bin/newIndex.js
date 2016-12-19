@@ -95,7 +95,6 @@ exports.TopicViewController = function($scope, $routeParams, $http) {
 			get('/api/v1/bamboo/topics/' + encoded).
 			success(function(data) {
 				$scope.bambooList = data.bamboos;
-				console.log(data.bamboos);
 			});
 		
 		setTimeout(function() {
