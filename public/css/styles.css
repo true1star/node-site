@@ -45,6 +45,28 @@ body {
 	text-align: center;
 }
 
+.section {
+	position: relative;
+	margin: 100px auto;
+	background-color: #2fd46a;
+	text-align: center;
+	color: #FFF;
+	font-size: 350%;
+	min-width: 420px;
+	width: 80%;
+	height: 300px;
+	font-weight: bold;
+	border-radius: 10px;
+	-webkit-box-shadow: 10px 10px 10px 3px rgba(0,0,0,0.2);
+	-moz-box-shadow: 10px 10px 10px 3px rgba(0,0,0,0.2);
+	box-shadow: 10px 10px 10px 3px rgba(0,0,0,0.2);
+}
+
+.section .title{
+	display: inline-block;
+	margin-top: 100px;
+}
+
 .bamboo-container {
 	position: relative;
 	min-width: 305px;
@@ -124,6 +146,36 @@ body {
 	color: #777777;
 }
 
+.start-btn {
+	position: relative;
+	margin: 0 auto;
+	width: 150px;
+	background-color: #FFF;
+	color: #777777;
+	text-align: center;
+	border: 3px solid #2fd46a;
+	border-bottom: 2px solid #1d8240;
+	height: 70px;
+	line-height: 70px;
+	font-size: 250%;
+	border-radius: 10px;
+	background-color: #2fd46a;
+	color: #FFF;
+}
+
+.start-btn:hover {
+	font-size: 300%;
+	font-weight: bold;
+	border-bottom: 2px solid #1d8240;
+}
+
+.start-btn:active {
+	font-size: 250%;
+	font-weight: bold;
+	border-bottom: 0;
+	width: 140px;
+}
+
 .category-filter:hover {
 	background-color: #2fd46a;
 	font-size: 120%;
@@ -140,6 +192,10 @@ body {
 	text-decoration: none;
 }
 .category-container a:hover, .category-container a:focus {
+	text-decoration: none;
+}
+
+.container-section a:hover, .container-section a:focus {
 	text-decoration: none;
 }
 
