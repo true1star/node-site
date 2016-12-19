@@ -61,7 +61,7 @@ exports.CategoryFilterController = function($scope, $routeParams, $http, $locati
 exports.CategoryBamboosController = function($scope, $routeParams, $http) {
 	
 	var encoded = "";
-	console.log($routeParams.category);
+
 	if( $routeParams.category ){
 		encoded = encodeURIComponent($routeParams.category);
 	}
