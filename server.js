@@ -15,7 +15,7 @@ app.use(express.static(__dirname + '/public'));
 //
 app.use(express.static('./', { maxAge: 4*60*60*1000 }));
 
-app.listen(port, funtion(){
+app.listen(port, function(){
 	console.log('Listening on port' + port);
 });
 

@@ -56,6 +56,7 @@ body {
 	width: 80%;
 	height: 300px;
 	font-weight: bold;
+	border-bottom: 2px solid #1d8240;
 	border-radius: 10px;
 	-webkit-box-shadow: 10px 10px 10px 3px rgba(0,0,0,0.2);
 	-moz-box-shadow: 10px 10px 10px 3px rgba(0,0,0,0.2);
